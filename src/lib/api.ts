@@ -1,6 +1,7 @@
 import { clearToken, loadToken, token } from '$lib/tokenStore';
 import { browser } from '$app/environment';
 import { get } from 'svelte/store';
+import { PUBLIC_API_KEY } from '$env/static/public';
 
 export async function apiFetch(endpoint: string, options: RequestInit = {}, method: string = 'GET') {
   const storedToken = get(token);
@@ -15,7 +16,7 @@ export async function apiFetch(endpoint: string, options: RequestInit = {}, meth
     headers.set('Authorization', `Bearer ${storedToken}`);
   }
 
-  const response = await fetch(endpoint, { 
+  const response = await fetch( PUBLIC_API_KEY + endpoint, { 
     ...options, 
     headers,
     method: method.toUpperCase()

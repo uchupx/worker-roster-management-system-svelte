@@ -11,7 +11,7 @@
 
   async function fetchShifts() {
     try {
-      const response = await apiFetch(`http://localhost:5000/shifts`);
+      const response = await apiFetch(`/shifts`);
       if (!response.ok) throw new Error('Failed to fetch shifts');
       shifts = await response.json();
     } catch (e) {
@@ -24,7 +24,7 @@
   async function actionShift(id, action= 'approve') {
     if (confirm(`Are you sure you want to ${action} this shift?`)) {
       try {
-        const response = await apiFetch(`http://localhost:5000/shifts/${id}/${action}`, {}, 'POST');
+        const response = await apiFetch(`/shifts/${id}/${action}`, {}, 'POST');
         if (response.ok) {
           fetchShifts()
         }

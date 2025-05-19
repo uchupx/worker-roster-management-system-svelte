@@ -36,7 +36,7 @@
     }
 
     try {
-      const response = await apiFetch('http://localhost:5000/me/shifts', {
+      const response = await apiFetch('/me/shifts', {
         body: JSON.stringify({
           shift_date: formatDate(shiftDate),
           start_time: startTime,

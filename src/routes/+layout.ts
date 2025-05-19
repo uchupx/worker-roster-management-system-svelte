@@ -15,8 +15,7 @@ export async function load({ url, fetch }) {
       if (get(token) == null) {
         redirect(301, "/login")
       }
-
-      await apiFetch('http://localhost:5000/me', { method: 'GET' }).then(async (response) => {
+      await apiFetch('/me', { method: 'GET' }).then(async (response) => {
         const data = await response.json();
         saveRoles(data.roles);
       })

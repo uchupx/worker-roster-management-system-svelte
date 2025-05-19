@@ -19,7 +19,7 @@
 
   onMount(async () => {
     try {
-      const response = await apiFetch("http://localhost:5000/users", {}, "GET");
+      const response = await apiFetch("/users", {}, "GET");
       if (response.ok) {
         users = await response.json();
       } else {
@@ -28,7 +28,7 @@
 
 
       const referenceId = $page.url.searchParams.get('reference');
-      const data = await apiFetch(`http://localhost:5000/shifts?id=${referenceId}`, {}, "GET");
+      const data = await apiFetch(`/shifts?id=${referenceId}`, {}, "GET");
       if (data.ok) {
         const shift = await data.json();
         if (shift.length > 0) {
@@ -71,7 +71,7 @@
 
     try {
       const response = await apiFetch(
-        "http://localhost:5000/shifts",
+        "/shifts",
         {
           body: JSON.stringify({
             shift_date: formatDate(shiftDate),

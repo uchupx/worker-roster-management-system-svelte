@@ -10,7 +10,7 @@
 
   async function fetchShifts() {
     try {
-      const response = await apiFetch('http://localhost:5000/me/shifts');
+      const response = await apiFetch('/me/shifts');
       if (!response.ok) throw new Error('Failed to fetch shifts');
       shifts = await response.json();
     } catch (e) {
@@ -20,20 +20,20 @@
     }
   }
 
-  async function deleteShift(id) {
-    if (confirm('Are you sure you want to Reject this shift request?')) {
-      try {
-        const response = await fetch(`http://localhost/me/shifts/${id}`, {
-          method: 'POST'
-        });
-        if (response.ok) {
-          shifts = shifts.filter(shift => shift.id !== id);
-        }
-      } catch (e) {
-        alert('Failed to delete shift');
-      }
-    }
-  }
+  // async function deleteShift(id) {
+  //   if (confirm('Are you sure you want to Reject this shift request?')) {
+  //     try {
+  //       const response = await (`/me/shifts/${id}`, {
+  //         method: 'POST'
+  //       });
+  //       if (response.ok) {
+  //         shifts = shifts.filter(shift => shift.id !== id);
+  //       }
+  //     } catch (e) {
+  //       alert('Failed to delete shift');
+  //     }
+  //   }
+  // }
 
   onMount(fetchShifts);
 </script>
@@ -77,11 +77,11 @@
                   <div class="flex space-x-2">
 
                     {#if shift.status === shiftStatus.Pending}
-                    <button 
-                      on:click={() => deleteShift(shift.id)}
-                      class="text-red-600 hover:text-red-800">
-                      Delete
-                    </button>
+                    <!-- <button  -->
+                    <!--   on:click={() => deleteShift(shift.id)} -->
+                    <!--   class="text-red-600 hover:text-red-800"> -->
+                    <!--   Delete -->
+                    <!-- </button> -->
                     {/if}
                   </div>
                 </td>
